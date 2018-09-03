@@ -2,11 +2,12 @@ version: "3.7"
 
 services:
   nginx:
-    container_name: "nginx"
-    # build: ./web-server 独自にubuntuをベースとしてnginxをinstallしたfile作ったがいらなそう
-    image: nginx:1.14
+    container_name: "web-server"
+    build: ./nginx
     ports:
       - "8080:80"
+    volumes:
+      - ./code:/opt/code
 
   php:
     build: ./php
