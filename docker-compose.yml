@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  nginx:
+    container_name: "web-server"
+    build: ./nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./code:/opt/code
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+
+  php:
+    build: ./php
+    container_name: "php"
+    volumes:
+      - ./code:/opt/code
+
+  mysql:
+    image: mysql:8.0
+    container_name: "mysql"
+    restart: always
+    environment:
+      MYSQL_DATABASE: root
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
