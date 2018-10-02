@@ -1,7 +1,7 @@
 FROM php:7.2-fpm
 
 # For composer
-RUN apt-get update \
+RUN apt-get -y update \
     && apt-get install -y zlib1g-dev \
     && apt-get install -y vim \
     && docker-php-ext-install zip
