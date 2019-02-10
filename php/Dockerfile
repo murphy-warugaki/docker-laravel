@@ -4,6 +4,7 @@ FROM php:7.2-fpm
 RUN apt-get -y update \
     && apt-get install -y zlib1g-dev \
     && apt-get install -y vim \
+    && alias ll='ls -l' \
     && docker-php-ext-install zip
 
 # Install composer
