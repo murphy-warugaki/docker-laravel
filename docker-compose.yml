@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   nginx:
-    container_name: "nginx"
+    container_name: "a-nginx"
     build: ./nginx
     ports:
       - "28080:80"
@@ -12,13 +12,13 @@ services:
 
   php:
     build: ./php
-    container_name: "anekatsu-php"
+    container_name: "a-php"
     volumes:
       - ./code:/opt/code
 
   mysql:
     image: mysql:8.0
-    container_name: "anekatsu-mysql"
+    container_name: "a-mysql"
     restart: always
     environment:
       MYSQL_DATABASE: root
@@ -28,7 +28,7 @@ services:
 
   redis:
     image: redis:5.0-rc
-    container_name: "anekatsu-redis"
+    container_name: "a-redis"
     restart: always
     ports:
       - "26379:6379"
