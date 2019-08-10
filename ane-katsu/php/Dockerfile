@@ -25,4 +25,6 @@ RUN apt-get update \
     && apt-get install -y libpq-dev \
     && docker-php-ext-install pdo_mysql
 
+RUN alias ll="ls -l"
+
 WORKDIR /opt/code
