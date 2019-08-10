@@ -4,7 +4,6 @@ FROM php:7.2-fpm
 RUN apt-get -y update \
     && apt-get install -y zlib1g-dev \
     && apt-get install -y vim \
-    && alias ll='ls -l' \
     && docker-php-ext-install zip
 
 # Install composer
@@ -25,5 +24,7 @@ RUN composer global require "laravel/installer"
 RUN apt-get update \
     && apt-get install -y libpq-dev \
     && docker-php-ext-install pdo_mysql
+
+RUN alias ll="ls -l"
 
 WORKDIR /opt/code
