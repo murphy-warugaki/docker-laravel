@@ -4,7 +4,7 @@ services:
 
   nginx:
     build: ./nginx
-    container_name: "sd-nginx"
+    container_name: "sg-nginx"
     ports:
       - "380:80"
     volumes:
@@ -13,13 +13,13 @@ services:
 
   php:
     build: ./php
-    container_name: "sd-php"
+    container_name: "sg-php"
     volumes:
       - ./code:/opt/code
 
   mysql:
     build: ./mysql
-    container_name: "sd-mysql"
+    container_name: "sg-mysql"
     volumes:
       - ./mysql/init.sql:/tmp/mysql/init.sql
       - ./mysql/my.cnf:/etc/mysql/my.cnf
@@ -32,7 +32,7 @@ services:
 
   redis:
     image: redis:5.0-rc
-    container_name: "sd-redis"
+    container_name: "sg-redis"
     restart: always
     ports:
       - "36379:6379"
