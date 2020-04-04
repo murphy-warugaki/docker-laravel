@@ -25,7 +25,7 @@ services:
       - ./mysql/my.cnf:/etc/mysql/my.cnf
     restart: always
     environment:
-      MYSQL_DATABASE: root
+      MYSQL_DATABASE: app
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "23306:3306"

@@ -4,35 +4,35 @@ services:
 
   nginx:
     build: ./nginx
-    container_name: "bg-nginx"
+    container_name: "ca-nginx"
     ports:
-      - "480:80"
+      - "580:80"
     volumes:
       - ./code:/opt/code
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
 
   php:
     build: ./php
-    container_name: "bg-php"
+    container_name: "ca-php"
     volumes:
       - ./code:/opt/code
 
   mysql:
     build: ./mysql
-    container_name: "bg-mysql"
+    container_name: "ca-mysql"
     volumes:
       - ./mysql/init.sql:/tmp/mysql/init.sql
       - ./mysql/my.cnf:/etc/mysql/my.cnf
     restart: always
     environment:
-      MYSQL_DATABASE: app
+      MYSQL_DATABASE: root
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - "436:3306"
+      - "536:3306"
 
   redis:
     image: redis:5.0-rc
-    container_name: "bg-redis"
+    container_name: "ca-redis"
     restart: always
     ports:
-      - "479:6379"
+      - "579:6379"

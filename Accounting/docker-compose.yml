@@ -1,0 +1,45 @@
+version: "3.7"
+
+services:
+  app:
+    build: ./php
+    container_name: "re-app"
+    volumes:
+      - ./src:/opt/src
+
+  web:
+    build: ./nginx
+    container_name: "re-web"
+    depends_on:
+     - app
+    ports:
+      - ${WEB_PORT}:80
+    volumes:
+      - ./src:/opt/src
+      - ./logs:/var/log/nginx
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      #letsh encryptを利用する時に外してください
+      #- /etc/letsencrypt:/etc/letsencrypt
+    environment:
+      TZ: ${TZ}
+
+  db:
+    image: mysql:5.7.21
+    container_name: "re-db"
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: secret
+      TZ: ${TZ}
+    ports:
+      - ${DB_PORT}:3306
+
+  redis:
+    image: redis:latest
+    container_name: "re-redis"
+    restart: always
+    volumes:
+      - ./redis:/data
+    ports:
+      - ${REDIS_PORT}:6379
+    command: redis-server --appendonly yes
